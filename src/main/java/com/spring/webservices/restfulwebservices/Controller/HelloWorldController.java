@@ -20,9 +20,9 @@ public class HelloWorldController {
         return new HelloWorldBean("Hello world Bean");
     }
 
-    @GetMapping(path="/hello-world/path-variable/{name}")
-    public HelloWorldBean helloWorldBean(@PathVariable String name)
+    @GetMapping(path="/hello-world/path-variable/{name}/{age}")
+    public HelloWorldBean helloWorldBean(@PathVariable String name,@PathVariable String age)
     {
-        return new HelloWorldBean("Hello world ," + name);
+        return new HelloWorldBean("Hello world ," + name + " age " + age);
     }
 }
