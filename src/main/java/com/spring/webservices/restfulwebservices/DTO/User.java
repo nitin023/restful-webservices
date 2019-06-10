@@ -15,6 +15,9 @@ public class User {
         return id;
     }
 
+    protected User() {
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
