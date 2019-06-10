@@ -1,6 +1,7 @@
 package com.spring.webservices.restfulwebservices.Controller;
 
 import com.spring.webservices.restfulwebservices.DTO.User;
+import com.spring.webservices.restfulwebservices.Exception.UserNotFoundException;
 import com.spring.webservices.restfulwebservices.UserDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-public class UserResource {
+public class UserResourceController {
 
     @Autowired
     private UserDaoService userDaoService;
@@ -30,7 +31,7 @@ public class UserResource {
         User user = userDaoService.findOne(id);
         if(user==null)
         {
-            return new User(-1,"-",new Date());
+            throw new UserNotFoundException("id : " + id);
         }
         return user;
     }
