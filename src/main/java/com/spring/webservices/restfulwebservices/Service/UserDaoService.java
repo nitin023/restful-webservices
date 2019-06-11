@@ -1,10 +1,11 @@
-package com.spring.webservices.restfulwebservices;
+package com.spring.webservices.restfulwebservices.Service;
 
 import com.spring.webservices.restfulwebservices.DTO.User;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Component
@@ -49,5 +50,24 @@ public class UserDaoService {
             }
         }
         return foundUser;
+    }
+
+    public User deleteById(int id)
+    {
+        User deletedUser = null;
+        Iterator<User> userIterator = users.iterator();
+
+        while (userIterator.hasNext())
+        {
+            User user = userIterator.next();
+
+            if(user.getId() == id)
+            {
+                userIterator.remove();
+                deletedUser = user;
+                break;
+            }
+        }
+        return deletedUser;
     }
 }
