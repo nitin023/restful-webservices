@@ -1,11 +1,11 @@
 package com.spring.webservices.restfulwebservices.Resources;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(value={"field1","field2"})
 public class SomeDemoBean {
 
-    @JsonIgnore
     private String field1;
     private String field2;
     private String field3;
