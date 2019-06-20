@@ -1,9 +1,9 @@
 package com.spring.webservices.restfulwebservices.Resources;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonFilter;
 
-@JsonIgnoreProperties(value={"field1","field2"})
+@JsonFilter("SomeDemoBeanFilter")
 public class SomeDemoBean {
 
     private String field1;
