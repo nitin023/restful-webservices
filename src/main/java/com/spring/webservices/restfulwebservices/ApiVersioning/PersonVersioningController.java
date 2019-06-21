@@ -30,4 +30,28 @@ public class PersonVersioningController {
         return new PersonV2(new Name("Nitin","Khulbe"));
     }
 
+    @GetMapping(value ="person/header",headers = "X-API-VERSION=1")
+    public PersonV1 getPersonV1usingRequestHeader()
+    {
+        return (new PersonV1("Nitin Khulbe"));
+    }
+
+    @GetMapping(value ="person/header",headers = "X-API-VERSION=2")
+    public PersonV2 getPersonV2usingRequestHeader()
+    {
+        return new PersonV2(new Name("Nitin","Khulbe"));
+    }
+
+    @GetMapping(value ="person/produces",produces = "application/vnd.company.app-v1+json")
+    public PersonV1 getPersonV1usingRequestHeaderProducesMethod()
+    {
+        return (new PersonV1("Nitin Khulbe"));
+    }
+
+    @GetMapping(value ="person/produces",produces = "application/vnd.company.app-v2+json")
+    public PersonV2 getPersonV2usingRequestHeaderProducesMethod()
+    {
+        return new PersonV2(new Name("Nitin","Khulbe"));
+    }
+
 }
