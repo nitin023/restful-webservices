@@ -17,4 +17,17 @@ public class PersonVersioningController {
     {
         return new PersonV2(new Name("Nitin","Khulbe"));
     }
+
+    @GetMapping(value ="person/param",params = "version=1")
+    public PersonV1 getPersonV1usingRequestParam()
+    {
+        return (new PersonV1("Nitin Khulbe"));
+    }
+
+    @GetMapping(value ="person/param",params = "version=2")
+    public PersonV2 getPersonV2usingRequestParam()
+    {
+        return new PersonV2(new Name("Nitin","Khulbe"));
+    }
+
 }
