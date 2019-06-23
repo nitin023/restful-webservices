@@ -1,6 +1,7 @@
 package com.spring.webservices.restfulwebservices.Service;
 
-import com.spring.webservices.restfulwebservices.DTO.User;
+
+import com.spring.webservices.restfulwebservices.Domain.User;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

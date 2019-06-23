@@ -1,18 +1,24 @@
-package com.spring.webservices.restfulwebservices.DTO;
+package com.spring.webservices.restfulwebservices.Domain;
 
-import javax.validation.constraints.Min;
+import javax.persistence.*;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+@Entity
+@Table(name="user_demo")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name ="user_name")
     @Size(min=2,message = "Name should have at least 2 characters")
     private String name;
 
     @Past
+    @Column(name ="user_dob")
     private Date birthDate;
 
 

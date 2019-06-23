@@ -1,6 +1,6 @@
 package com.spring.webservices.restfulwebservices.Controller;
 
-import com.spring.webservices.restfulwebservices.DTO.User;
+import com.spring.webservices.restfulwebservices.Domain.User;
 import com.spring.webservices.restfulwebservices.Exception.UserNotFoundException;
 import com.spring.webservices.restfulwebservices.Service.UserDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
