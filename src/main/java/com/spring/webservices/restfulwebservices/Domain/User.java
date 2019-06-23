@@ -4,10 +4,11 @@ import javax.persistence.*;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="user_demo")
-public class User {
+public class  User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +27,10 @@ public class User {
         return id;
     }
 
-    protected User() {
+    @OneToMany(mappedBy = "user")
+    private List<Post> postList;
+
+    public User() {
     }
 
     public void setId(Integer id) {
@@ -47,6 +51,14 @@ public class User {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Post> getPostList() {
+        return postList;
+    }
+
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
     }
 
     public User(Integer id, String name, Date birthDate) {

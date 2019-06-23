@@ -1,7 +1,9 @@
 package com.spring.webservices.restfulwebservices.Controller;
 
+import com.spring.webservices.restfulwebservices.Domain.Post;
 import com.spring.webservices.restfulwebservices.Domain.User;
 import com.spring.webservices.restfulwebservices.Exception.UserNotFoundException;
+import com.spring.webservices.restfulwebservices.Repository.PostRepository;
 import com.spring.webservices.restfulwebservices.Repository.UserDomainRepository;
 import com.spring.webservices.restfulwebservices.Service.UserDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class UserJPAResourceController {
 
     @Autowired
     private UserDomainRepository userDomainRepository;
+
+    @Autowired
+    private PostRepository postRepository;
 
     @GetMapping("/jpa/users")
     public List<User> retrieveAllUsers()
@@ -71,5 +76,29 @@ public class UserJPAResourceController {
             return new ResponseEntity(responseMessage, HttpStatus.OK);
         }
         throw new UserNotFoundException("user not found with id : " + id);
+    }
+
+    @GetMapping("/jpa/users/{id}/posts")
+    public ResponseEntity retrieveAllUsers(@PathVariable Integer id)
+    {
+        Optional<User>optionalUser = userDomainRepository.findById(id);
+        if(!optionalUser.isPresent())
+        {
+            throw new UserNotFoundException("User not found with id : " +id);
+        }
+        return new ResponseEntity(optionalUser.get().getPostList(),HttpStatus.OK);
+    }
+    @PostMapping("/jpa/users/{id}/post")
+    public ResponseEntity createUserPost(@PathVariable Integer id,@RequestBody Post post)
+    {
+        Optional<User>userOptional = userDomainRepository.findById(id);
+        if(!userOptional.isPresent())
+        {
+            throw new UserNotFoundException("user not found with id : " + id);
+        }
+        User user = userOptional.get();
+        post.setUser(user);
+        postRepository.save(post);
+        return new ResponseEntity("Post successfully created",HttpStatus.CREATED);
     }
 }
